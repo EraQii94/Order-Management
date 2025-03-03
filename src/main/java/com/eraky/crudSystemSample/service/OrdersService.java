@@ -25,21 +25,33 @@ public class OrdersService {
     }
 
     //read By ID
-    public Optional<Order> findById(int id){
-        return ordersRepository.findById(id);
+    public Optional<Order> findById(Long id){
+        Optional<Order> tempOrder = ordersRepository.findById(id);
+        return tempOrder;
     }
 
     //update
-    public Order updateOrder(int id, Order updatedOrder){
-        if (ordersRepository.existsById(id)) {
-            updatedOrder.setId(id);
-            return updatedOrder;
+    public Order updateOrder(Long id, Order updatedOrder) {
+
+        Optional<Order> tempOrder = ordersRepository.findById(id);
+
+        if (tempOrder.isPresent()) {
+            Order existingOrder = tempOrder.get();
+
+            existingOrder.setProductName(updatedOrder.getProductName());
+            existingOrder.setPrice(updatedOrder.getPrice());
+            existingOrder.setQuantity(updatedOrder.getQuantity());
+
+
+            return ordersRepository.save(existingOrder);
+        } else {
+
+            return null;
         }
-        return null;
     }
 
     //delete
-    public void deleteOrderById(int id){
+    public void deleteOrderById(Long id){
         ordersRepository.deleteById(id);
 
     }

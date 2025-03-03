@@ -28,19 +28,19 @@ public class OrdersController {
 
     //get order by id
     @GetMapping("/{id}")
-    public Optional<Order> getOrderById(@PathVariable int id){
+    public Optional<Order> getOrderById(@PathVariable Long id){
         return ordersService.findById(id);
     }
 
     //update order
     @PutMapping("/{id}")
-    public Order updateOrder(@PathVariable int id, @RequestBody Order updatedOrder) {
+    public Order updateOrder(@PathVariable Long id, @RequestBody Order updatedOrder) {
         return ordersService.updateOrder(id, updatedOrder);
     }
 
     //delete order
     @DeleteMapping("/{id}")
-    public void deleteOrder(@PathVariable int id){
+    public void deleteOrder(@PathVariable Long id){
         ordersService.deleteOrderById(id);
     }
 }
