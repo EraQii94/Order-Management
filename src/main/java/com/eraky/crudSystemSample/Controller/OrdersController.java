@@ -1,7 +1,7 @@
-package com.eraky.crudSystemSample.rest;
+package com.eraky.crudSystemSample.Controller;
 
 
-import com.eraky.crudSystemSample.entity.Orders;
+import com.eraky.crudSystemSample.entity.Order;
 import com.eraky.crudSystemSample.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,25 +16,25 @@ public class OrdersController {
 
     //create order
     @PostMapping
-    public Orders createOrder(@RequestBody Orders order){
+    public Order createOrder(@RequestBody Order order){
         return ordersService.createOrder(order);
     }
 
     //get all orders
     @GetMapping
-    public List<Orders> getALlOrders(){
+    public List<Order> getALlOrders(){
         return ordersService.findAll();
     }
 
     //get order by id
     @GetMapping("/{id}")
-    public Optional<Orders> getOrderById(@PathVariable int id){
+    public Optional<Order> getOrderById(@PathVariable int id){
         return ordersService.findById(id);
     }
 
     //update order
     @PutMapping("/{id}")
-    public Orders updateOrder(@PathVariable int id, @RequestBody Orders updatedOrder) {
+    public Order updateOrder(@PathVariable int id, @RequestBody Order updatedOrder) {
         return ordersService.updateOrder(id, updatedOrder);
     }
 

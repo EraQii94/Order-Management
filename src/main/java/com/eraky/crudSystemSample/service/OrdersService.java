@@ -1,7 +1,7 @@
 package com.eraky.crudSystemSample.service;
 
-import com.eraky.crudSystemSample.DAO.OrdersRepository;
-import com.eraky.crudSystemSample.entity.Orders;
+import com.eraky.crudSystemSample.Repository.OrdersRepository;
+import com.eraky.crudSystemSample.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,22 +15,22 @@ public class OrdersService {
 
 
     //create
-    public Orders createOrder(Orders order){
+    public Order createOrder(Order order){
         return ordersRepository.save(order);
     }
 
     //read all
-    public List<Orders> findAll(){
+    public List<Order> findAll(){
         return ordersRepository.findAll();
     }
 
     //read By ID
-    public Optional<Orders> findById(int id){
+    public Optional<Order> findById(int id){
         return ordersRepository.findById(id);
     }
 
     //update
-    public Orders updateOrder(int id, Orders updatedOrder){
+    public Order updateOrder(int id, Order updatedOrder){
         if (ordersRepository.existsById(id)) {
             updatedOrder.setId(id);
             return updatedOrder;

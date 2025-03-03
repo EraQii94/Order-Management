@@ -1,26 +1,42 @@
 package com.eraky.crudSystemSample.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.Date;
 
 @Entity
-public class Orders {
+@Table(name = "orders")
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+
     private int id;
 
+    @Column(name = "PRODUCT_NAME")
     private String productName;
 
+    @Column(name = "PRICE")
     private double price;
 
+    @Column(name = "QUANTITY")
     private int quantity;
 
-    public Orders() {
+    @Column(name = "CREATE_DATE")
+    @CreationTimestamp
+    private Date createDate;
+
+    @Column(name = "UPDATE_DATE")
+    @UpdateTimestamp
+    private Date updateDate;
+
+
+    public Order() {
     }
 
-    public Orders(String productName, double price, int quantity) {
+    public Order(String productName, double price, int quantity) {
         this.productName = productName;
         this.price = price;
         this.quantity = quantity;
